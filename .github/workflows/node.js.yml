@@ -2,7 +2,7 @@ name: publish-to-github-pages
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: read
@@ -26,7 +26,10 @@ jobs:
         with:
           node-version: 22
           cache: 'npm'
-          working-directory: ./move-safe-webapp
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./move-safe-webapp
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
