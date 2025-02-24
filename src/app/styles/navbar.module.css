@@ -1,0 +1,5 @@
+.navbar_body {
+	background: var(--joy-palette-primary-solidBg);
+    padding: 0.5rem;
+    height: 5rem;
+}

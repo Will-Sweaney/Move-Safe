@@ -1,0 +1,11 @@
+.menu_body {
+    position: absolute;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.button {
+    width: 96px;
+    height: 96px;
+    --joy-radius-sm: 1rem 1rem 0 0;
+}
