@@ -29,7 +29,7 @@ jobs:
 
     - name: Ensure Next.js config is set correctly
       run: |
-        echo "module.exports = { output: 'export' };" > move-safe-webapp/next.config.js
+        echo "export default { output: 'export' };" > move-safe-webapp/next.config.mjs
 
     - name: Build project
       run: npm run build
