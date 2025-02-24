@@ -35,6 +35,9 @@ jobs:
       run: npm run build
       working-directory: move-safe-webapp
 
+    - name: Verify build output
+      run: ls -R move-safe-webapp/out || echo "No build output found!"
+
     - name: Upload to GitHub Pages
       uses: actions/upload-artifact@v4
       with:
@@ -42,13 +45,11 @@ jobs:
         path: move-safe-webapp/out/
         if-no-files-found: error
 
-    - name: List contents of artifact directory
-      run: ls -R move-safe-webapp/out
-
   deploy:
     runs-on: ubuntu-latest
     needs: build
     permissions:
+      contents: read
       pages: write
       id-token: write
 
@@ -57,10 +58,10 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: github-pages
-        path: ./out
+        path: move-safe-webapp/out
 
-    - name: List available artifacts
-      run: ls -R ./out || echo "No artifact found!"
-      
+    - name: Verify downloaded artifact
+      run: ls -R move-safe-webapp/out || echo "No artifact found!"
+
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v2
