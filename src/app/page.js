@@ -1,15 +1,18 @@
-import Image from 'next/image';
+"use client"
 
-import Slider from '@mui/joy/Slider';
+import dynamic from "next/dynamic";
+
+
 import Navbar from 'components/Navbar';
 import ActionMenuLeft from 'components/ActionMenuLeft';
-import Map from 'components/Map';
+
+const DynamicMap = dynamic(() => import("components/Map"), { ssr: false });
 
 export default function Home() {
 	return (
 		<div>
 			<Navbar />
-			<Map/>
+			<DynamicMap/>
 			<ActionMenuLeft/>
 		</div>
 	);
