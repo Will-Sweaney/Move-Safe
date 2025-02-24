@@ -5,7 +5,7 @@ const nextConfig = {
 	images: {
 		unoptimized: true,
 	},
-	basePath: '/move-safe',
+	basePath: '/Move-Safe',
 };
 
 export default nextConfig;
