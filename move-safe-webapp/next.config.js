@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
-
 const nextConfig = {
+	basePath: '/Move-Safe',
 	output: 'export',
+	reactStrictMode: true,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
