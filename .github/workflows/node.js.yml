@@ -42,7 +42,8 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: github-pages
-        path: move-safe-webapp/out
+        path: move-safe-webapp/.next
+        if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
