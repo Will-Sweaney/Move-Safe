@@ -40,7 +40,7 @@ jobs:
       run: ls -R move-safe-webapp/out || echo "No build output found!"
 
     - name: Upload to GitHub Pages artifact
-      uses: actions/upload-pages-artifact@v2
+      uses: actions/upload-pages-artifact@v4
       with:
         path: move-safe-webapp/out/
 
