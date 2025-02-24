@@ -22,8 +22,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: ./.github/workflows/setup-node
+        uses: actions/setup-node@v4
         with:
+          node-version: 22
+          cache: 'npm'
           working-directory: ./move-safe-webapp
 
       - name: Setup Pages
