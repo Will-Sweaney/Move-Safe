@@ -45,6 +45,9 @@ jobs:
         path: move-safe-webapp/out
         if-no-files-found: error
 
+    - name: List contents of artifact directory
+      run: ls -R move-safe-webapp/out
+
   deploy:
     runs-on: ubuntu-latest
     needs: build
