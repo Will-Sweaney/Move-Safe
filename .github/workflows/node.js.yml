@@ -27,9 +27,9 @@ jobs:
       run: npm ci
       working-directory: move-safe-webapp
 
-    - name: Ensure output is set correctly
+    - name: Ensure Next.js config is set correctly
       run: |
-        echo "export default { output: 'export' };" > move-safe-webapp/next.config.js
+        echo "export default { output: 'export' };" > move-safe-webapp/next.config.mjs
 
     - name: Build project
       run: npm run build
