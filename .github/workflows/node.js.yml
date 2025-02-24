@@ -58,10 +58,12 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: github-pages
-        path: move-safe-webapp/out
+        path: ./out
 
     - name: Verify downloaded artifact
-      run: ls -R move-safe-webapp/out || echo "No artifact found!"
+      run: ls -R ./out || echo "No artifact found!"
 
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v2
+      with:
+        artifact_path: ./out
