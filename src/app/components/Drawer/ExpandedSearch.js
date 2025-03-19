@@ -82,7 +82,7 @@ function SwipeableEdgeDrawer({ open, setOpen }) {
 					}}
 				>
 					<Puller />
-					<Typography sx={{ p: 2, color: 'text.secondary' }}>In the area</Typography>
+					<Typography sx={{ p: 2, color: 'text.secondary' }}>About the area</Typography>
 				</StyledBox>
 				<StyledBox sx={{ px: 2, pb: 2, height: '100%', overflow: 'auto' }}>
 					<Skeleton variant="rectangular" height="100%" />

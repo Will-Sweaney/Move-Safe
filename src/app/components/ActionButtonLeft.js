@@ -9,6 +9,7 @@ import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
 import PriorityHighOutlinedIcon from '@mui/icons-material/PriorityHighOutlined';
 import ReportGmailerrorredOutlinedIcon from '@mui/icons-material/ReportGmailerrorredOutlined';
 import CrisisAlertOutlinedIcon from '@mui/icons-material/CrisisAlertOutlined';
+import OutlinedFlagIcon from '@mui/icons-material/OutlinedFlag';
 
 const actions = [
   { icon: <CrisisAlertOutlinedIcon />, name: 'Dangerous Area' },
@@ -22,7 +23,7 @@ export default function ActionButton() {
       <SpeedDial
         ariaLabel="SpeedDial basic example"
         sx={{ position: 'absolute', bottom: 16 + 56, left: 16 }}
-        icon={<ReportGmailerrorredOutlinedIcon />}
+        icon={<OutlinedFlagIcon />}
       >
         {actions.map((action) => (
           <SpeedDialAction
