@@ -1,11 +1,15 @@
-/** @type {import('next').NextConfig} */
+// /** @type {import('next').NextConfig} */
 
-const nextConfig = {
-	output: 'export',
-  reactStrictMode: true,
-  images: {
-    unoptimized: true
-  }
-};
+// const nextConfig = {
+//     async redirects() {
+//         return [
+//             {
+//                 source: '/',
+//                 destination: '/',
+//                 permanent: true,
+//             },
+//         ];
+//     },
+// };
 
-module.exports = nextConfig;
+// module.exports = nextConfig;
