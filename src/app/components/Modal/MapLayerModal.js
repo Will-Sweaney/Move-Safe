@@ -3,10 +3,7 @@ import React, { useState } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import PersonIcon from '@mui/icons-material/Person';
-import AddIcon from '@mui/icons-material/Add';
 import Typography from '@mui/material/Typography';
-import { blue } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -26,7 +23,7 @@ const cards = [
 ];
 
 export default function MapLayerModal({ open, setOpen, onLayerChange }) {
-	const [selectedCard, setSelectedCard] = useState(null);
+	const [selectedCard, setSelectedCard] = useState(0);
 
 	const handleClose = () => {
 		setOpen(false);

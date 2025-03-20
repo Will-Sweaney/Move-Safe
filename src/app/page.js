@@ -13,7 +13,8 @@ import Box from '@mui/material/Box';
 export default function Home() {
 	const [expandedSearchOpen, setExpandedSearchOpen] = useState(false);
 	const [demoRouteEnabled, setDemoRouteEnabled] = useState(false);
-	const [mapLayerID, setMapLayerID] = useState(1);
+	const [friendViewEnabled, setFriendViewEnabled] = useState(false);
+	const [mapLayerID, setMapLayerID] = useState(0);
 
 	const handleRouteChange = () => {
 		setDemoRouteEnabled(true)
@@ -23,12 +24,16 @@ export default function Home() {
 		setMapLayerID(id)
 	}
 
+	const handleFriendViewChange = () => {
+		setFriendViewEnabled(!friendViewEnabled)
+	}
+
 	return (
 		<Box>
 			<Navbar onRouteSelect={handleRouteChange}/>
-			<Map showDemoRoute={demoRouteEnabled} mapLayerID={mapLayerID}/>
+			<Map showDemoRoute={demoRouteEnabled} mapLayerID={mapLayerID} showFriends={friendViewEnabled}/>
 			<ActionButtonLeft />
-			<ActionButtonRight onLayerChange={handleMapLayerChange}/>
+			<ActionButtonRight onLayerChange={handleMapLayerChange} onToggleFriendView={handleFriendViewChange}/>
 			<ExpandedSearch open={expandedSearchOpen} setOpen={setExpandedSearchOpen} />
 		</Box>
 	);

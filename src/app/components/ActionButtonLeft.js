@@ -1,8 +1,9 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
+
+import NotifySnackbar from './Snackbar/Notify';
 
 import Box from '@mui/material/Box';
 import SpeedDial from '@mui/material/SpeedDial';
-import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 
 import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
@@ -18,6 +19,16 @@ const actions = [
 ];
 
 export default function ActionButton() {
+	const [notifySnackbarOpen, setNotifySnackbarOpen] = useState(false);
+	const [notifySnackbarMessage, setNotifySnackbarMessage] = useState('a');
+
+	const notify = (message) => {
+    if (!notifySnackbarOpen) {
+      setNotifySnackbarMessage(message);
+      setNotifySnackbarOpen(true);
+    }
+	};
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <SpeedDial
@@ -27,12 +38,14 @@ export default function ActionButton() {
       >
         {actions.map((action) => (
           <SpeedDialAction
+            onClick={() => notify(`Reported: ${action.name}`)}
             key={action.name}
             icon={action.icon}
-            tooltipTitle={action.name}
+            title={action.name}
           />
         ))}
       </SpeedDial>
+      <NotifySnackbar open={notifySnackbarOpen} setOpen={setNotifySnackbarOpen} message={notifySnackbarMessage}/>
     </Box>
   );
 }

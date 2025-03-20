@@ -7,7 +7,7 @@ const tileValues = [
 	'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 ];
 
-export default function Map({ showDemoRoute, mapLayerID }) {
+export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 	const [Leaflet, setLeaflet] = useState(null);
 	const [route, setRoute] = useState([]);
 	const mapRef = useRef(null);
@@ -45,7 +45,7 @@ export default function Map({ showDemoRoute, mapLayerID }) {
 				setRoute(coordinates);
 
 				if (mapRef.current) {
-					mapRef.current.setView([50.376, -4.137], 13);
+					mapRef.current.setView([50.396, -4.137], 13);
 				}
 			}
 		} catch (error) {
@@ -69,7 +69,7 @@ export default function Map({ showDemoRoute, mapLayerID }) {
 
 	const imageBounds4 = [
 		[50.37, -4.16],
-		[50.40, -4.09],
+		[50.4, -4.09],
 	];
 
 	const customIcon = L.icon({
@@ -79,10 +79,17 @@ export default function Map({ showDemoRoute, mapLayerID }) {
 		popupAnchor: [0, -32],
 	});
 
+	const customIconPerson = L.icon({
+		iconUrl: 'https://cdn3.iconfinder.com/data/icons/maps-and-navigation-7/65/68-1024.png',
+		iconSize: [32, 32],
+		iconAnchor: [16, 32],
+		popupAnchor: [0, -32],
+	});
+
 	return (
 		<div style={{ height: 'calc(100vh - 5rem - 56px)', width: '100%' }}>
 			<MapContainer center={[50.376, -4.137]} zoom={13} ref={mapRef} style={{ height: '100%', width: '100%' }}>
-				<TileLayer url={tileValues[mapLayerID]} />	
+				<TileLayer url={tileValues[mapLayerID]} />
 				<ImageOverlay
 					url="https://www.pngmart.com/files/23/Editing-Red-Glow-PNG-Pic.png"
 					bounds={imageBounds2}
@@ -98,6 +105,28 @@ export default function Map({ showDemoRoute, mapLayerID }) {
 					bounds={imageBounds4}
 					opacity={0.3}
 				/>
+				{showFriends && (
+					<>
+						<Marker position={[50.402, -4.12]} icon={customIconPerson}>
+							<Popup>Alex</Popup>
+						</Marker>
+						<Marker position={[50.372, -4.148]} icon={customIconPerson}>
+							<Popup>Bob</Popup>
+						</Marker>
+						<Marker position={[50.35, -4.108]} icon={customIconPerson}>
+							<Popup>Charlie</Popup>
+						</Marker>
+						<Marker position={[50.371, -4.14]} icon={customIconPerson}>
+							<Popup>Dean</Popup>
+						</Marker>
+						<Marker position={[50.367, -4.158]} icon={customIconPerson}>
+							<Popup>Fin</Popup>
+						</Marker>
+						<Marker position={[50.40, -4.16]} icon={customIconPerson}>
+							<Popup>Gareth</Popup>
+						</Marker>
+					</>
+				)}
 				{showDemoRoute && (
 					<>
 						<Marker position={[50.422, -4.12]} icon={customIcon}>
