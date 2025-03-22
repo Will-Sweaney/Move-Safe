@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react';
 
 const tileValues = [
-	'http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
+	'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
 	'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 ];
 
