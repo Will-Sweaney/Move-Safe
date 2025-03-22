@@ -29,82 +29,36 @@ export default function TemporaryDrawer({ setOpen, open }) {
 			open={open}
 			onClose={handleClose}
 			PaperProps={{
-				sx: { borderBottomRightRadius: '8px', width: '60vw', overflow: 'hidden', minHeight: '100vh' },
+				sx: {
+					borderBottomRightRadius: '8px',
+					width: '60vw',
+					maxWidth: '280px',
+					overflow: 'hidden',
+					minHeight: 'auto',
+					height: 'auto',
+					maxHeight: 'auto',
+				},
 			}}
 		>
-			<Box sx={{ width: '100%' }}>
-				<Accordion expanded={expanded === '1'} onChange={handleChange('1')}>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />}>
-						<Typography component="span" sx={{ flexShrink: 0 }}>
-							General
-						</Typography>
-					</AccordionSummary>
-					<AccordionDetails sx={{ gap: '1rem', display: 'flex', flexDirection: 'column' }}>
-						<Button
-							variant="contained"
-							sx={{ width: '100%' }}
-							onClick={() => {
-								router.push('/');
-							}}
-						>
-							Home
-						</Button>
-						<Button
-							variant="contained"
-							sx={{ width: '100%' }}
-						>
-							Settings
-						</Button>
-					</AccordionDetails>
-				</Accordion>
-				<Accordion expanded={expanded === '2'} onChange={handleChange('2')}>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />}>
-						<Typography
-							component="span"
-							sx={{ flexShrink: 0 }}
-							onClick={() => {
-								router.push('/about-us');
-							}}
-						>
-							About Us
-						</Typography>
-					</AccordionSummary>
-					<AccordionDetails sx={{ gap: '1rem', display: 'flex', flexDirection: 'column' }}>
-						<Button
-							variant="contained"
-							sx={{ width: '100%' }}
-							onClick={() => {
-								router.push('/about-us');
-							}}
-						>
-							Team Members
-						</Button>
-						<Button
-							variant="contained"
-							sx={{ width: '100%' }}
-							onClick={() => {
-								router.push('/about-us');
-							}}
-						>
-							Contact
-						</Button>
-					</AccordionDetails>
-				</Accordion>
-				<Accordion expanded={expanded === '3'} onChange={handleChange('3')}>
-					<AccordionSummary expandIcon={<ExpandMoreIcon />}>
-						<Typography component="span" sx={{ flexShrink: 0 }}>
-							Settings
-						</Typography>
-					</AccordionSummary>
-					<AccordionDetails sx={{ gap: '1rem', display: 'flex', flexDirection: 'column' }}>
-						<Button variant="contained" sx={{ width: '100%' }}>
-							Account
-						</Button>
-						<Button variant="contained" sx={{ width: '100%' }}>
-							Display
-						</Button>
-					</AccordionDetails>
-				</Accordion>
+			<Box sx={{ width: '100%', display: 'flex', p: '1rem', flexDirection: 'column', gap: '1rem' }}>
+				<Button
+					variant="contained"
+					sx={{ width: '100%' }}
+					onClick={() => {
+						router.push('/');
+					}}
+				>
+					Home
+				</Button>
+				<Button
+					variant="contained"
+					sx={{ width: '100%' }}
+					onClick={() => {
+						router.push('/about-us');
+					}}
+				>
+					Team Members
+				</Button>
 			</Box>
 		</Drawer>
 	);

@@ -8,9 +8,14 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { grey } from '@mui/material/colors';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import Card from '@mui/material/Card';
+import Alert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Rating from '@mui/material/Rating';
+import Divider from '@mui/material/Divider';
+
+import StarIcon from '@mui/icons-material/Star';
 
 const drawerBleeding = 56;
 
@@ -53,7 +58,6 @@ function SwipeableEdgeDrawer({ open, setOpen }) {
 			<Global
 				styles={{
 					'.MuiDrawer-root > .MuiPaper-root': {
-						height: `calc(60% - ${drawerBleeding}px)`,
 						overflow: 'visible',
 					},
 				}}
@@ -85,7 +89,53 @@ function SwipeableEdgeDrawer({ open, setOpen }) {
 					<Typography sx={{ p: 2, color: 'text.secondary' }}>About the area</Typography>
 				</StyledBox>
 				<StyledBox sx={{ px: 2, pb: 2, height: '100%', overflow: 'auto' }}>
-					<Skeleton variant="rectangular" height="100%" />
+					<Box sx={{ display: 'flex', gap: '1rem', flexDirection: 'column' }}>
+						<Box sx={{ display: 'flex', flexDirection: 'row' }}>
+							<Typography variant="h5">
+								Plymouth
+							</Typography>
+							<Box sx={{ width: 200, display: 'flex', alignItems: 'center', width: '100%' }}>
+								<Rating
+									name="text-feedback"
+									value={3}
+									readOnly
+									precision={0.5}
+									emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+									sx={{ ml: 'auto' }}
+								/>
+								<Box sx={{ ml: 2 }}>Good</Box>
+							</Box>
+						</Box>
+						<Card variant="outlined">
+							<Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+								<img src="/w3w.png" width={42} style={{ marginInline: '0.2rem' }} />
+								<Alert
+									sx={{ width: '100%' }}
+									severity="error"
+									icon={false}
+									action={
+										<Button color="inherit" size="small">
+											COPY
+										</Button>
+									}
+								>
+									doors.caged.settle
+								</Alert>
+							</Box>
+						</Card>
+						<Divider />
+						<Box sx={{ display: 'flex', flexDirection: 'column', gap: '0.5em' }}>
+							<Typography sx={{ width: '200px' }}>About Plymouth</Typography>
+							<Typography sx={{ width: '200px', color: 'text.secondary', width: '100%' }}>
+								Plymouth is a coastal city known for its open spaces and relatively safe environment.
+								While its crime rate is slightly higher than the Devon average, it remains one of the
+								safer cities in the UK.
+							</Typography>
+						</Box>
+					</Box>
+					<Button variant="contained" sx={{ width: '100%', mt: '68px' }}>
+						MORE
+					</Button>
 				</StyledBox>
 			</SwipeableDrawer>
 		</Root>

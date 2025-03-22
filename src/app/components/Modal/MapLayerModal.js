@@ -17,8 +17,8 @@ const cards = [
 	},
 	{
 		id: 2,
-		title: 'Sattelite',
-		description: 'Sattelite imagery of terrain. May be harder to distinguish',
+		title: 'Satellite',
+		description: 'Satellite imagery of terrain. May be harder to distinguish',
 	},
 ];
 

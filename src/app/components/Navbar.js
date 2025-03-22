@@ -22,6 +22,7 @@ export default function Navbar({ onRouteSelect, title }) {
 
 	return (
 		<React.Fragment>
+			<SidebarMenu open={sidebarOpen} setOpen={setSidebarOpen} />
 			<Box
 				sx={{
 					flexGrow: 1,
@@ -77,7 +78,6 @@ export default function Navbar({ onRouteSelect, title }) {
 					)}
 				</Stack>
 			</Box>
-			<SidebarMenu open={sidebarOpen} setOpen={setSidebarOpen} />
 		</React.Fragment>
 	);
 }
