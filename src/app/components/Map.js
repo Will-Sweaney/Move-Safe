@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle } from 'react';
 
 const tileValues = [
 	'http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png',
 	'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 ];
 
-export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
+const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
 	const [Leaflet, setLeaflet] = useState(null);
 	const [route, setRoute] = useState([]);
 	const mapRef = useRef(null);
@@ -32,7 +32,7 @@ export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 	}, [showDemoRoute]);
 
 	const fetchRoute = async () => {
-		const start = '-4.120,50.422';
+		const start = '-4.120,50.42';
 		const end = '-4.148,50.370';
 
 		const url = `https://router.project-osrm.org/route/v1/driving/${start};${end}?overview=full&geometries=geojson`;
@@ -52,6 +52,14 @@ export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 			console.error('Error fetching route:', error);
 		}
 	};
+
+	useImperativeHandle(ref, () => ({
+		gotoCurrentLocation() {
+			if (mapRef.current) {
+				mapRef.current.setView([50.42, -4.12], 16);
+			}
+		},
+	}));
 
 	if (!Leaflet) return null;
 
@@ -79,6 +87,12 @@ export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 		popupAnchor: [0, -32],
 	});
 
+	const customIconLocation = L.icon({
+		iconUrl: 'https://www.onlygfx.com/wp-content/uploads/2022/03/blue-circle-round-3d-button-4.png',
+		iconSize: [12, 12],
+		iconAnchor: [6, 6],
+	});
+
 	const customIconPerson = L.icon({
 		iconUrl: 'https://cdn3.iconfinder.com/data/icons/maps-and-navigation-7/65/68-1024.png',
 		iconSize: [32, 32],
@@ -88,7 +102,7 @@ export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 
 	return (
 		<div style={{ height: 'calc(100vh - 5rem - 56px)', width: '100%' }}>
-			<MapContainer center={[50.376, -4.137]} zoom={13} ref={mapRef} style={{ height: '100%', width: '100%' }}>
+			<MapContainer center={[50.42, -4.12]} zoom={15} ref={mapRef} style={{ height: '100%', width: '100%' }}>
 				<TileLayer url={tileValues[mapLayerID]} />
 				<ImageOverlay
 					url="https://www.pngmart.com/files/23/Editing-Red-Glow-PNG-Pic.png"
@@ -122,23 +136,21 @@ export default function Map({ showDemoRoute, mapLayerID, showFriends }) {
 						<Marker position={[50.367, -4.158]} icon={customIconPerson}>
 							<Popup>Fin</Popup>
 						</Marker>
-						<Marker position={[50.40, -4.16]} icon={customIconPerson}>
+						<Marker position={[50.4, -4.16]} icon={customIconPerson}>
 							<Popup>Gareth</Popup>
 						</Marker>
 					</>
 				)}
 				{showDemoRoute && (
-					<>
-						<Marker position={[50.422, -4.12]} icon={customIcon}>
-							<Popup>Start Point</Popup>
-						</Marker>
-						<Marker position={[50.37, -4.148]} icon={customIcon}>
-							<Popup>End Point</Popup>
-						</Marker>{' '}
-					</>
+					<Marker position={[50.37, -4.148]} icon={customIcon}>
+						<Popup>Destination</Popup>
+					</Marker>
 				)}
 				{showDemoRoute && route.length > 0 && <Polyline positions={route} color="yellow" />}
+				<Marker position={[50.42, -4.12]} icon={customIconLocation} />
 			</MapContainer>
 		</div>
 	);
-}
+});
+
+export default Map;

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import ExpandedSearch from '@/components/Drawer/ExpandedSearch';
 import ActionButtonLeft from 'components/ActionButtonLeft';
@@ -15,25 +15,36 @@ export default function Home() {
 	const [demoRouteEnabled, setDemoRouteEnabled] = useState(false);
 	const [friendViewEnabled, setFriendViewEnabled] = useState(false);
 	const [mapLayerID, setMapLayerID] = useState(0);
+	const mapRef = useRef();
 
 	const handleRouteChange = () => {
-		setDemoRouteEnabled(true)
+		setDemoRouteEnabled(true);
 	};
 
 	const handleMapLayerChange = (id) => {
-		setMapLayerID(id)
-	}
+		setMapLayerID(id);
+	};
 
 	const handleFriendViewChange = () => {
-		setFriendViewEnabled(!friendViewEnabled)
-	}
+		setFriendViewEnabled(!friendViewEnabled);
+	};
+
+	const handleGotoCurrentLocation = () => {
+		if (mapRef.current) {
+			mapRef.current.gotoCurrentLocation();
+		}
+	};
 
 	return (
 		<Box>
-			<Navbar onRouteSelect={handleRouteChange}/>
-			<Map showDemoRoute={demoRouteEnabled} mapLayerID={mapLayerID} showFriends={friendViewEnabled}/>
+			<Navbar onRouteSelect={handleRouteChange} />
+			<Map showDemoRoute={demoRouteEnabled} mapLayerID={mapLayerID} showFriends={friendViewEnabled} ref={mapRef}/>
 			<ActionButtonLeft />
-			<ActionButtonRight onLayerChange={handleMapLayerChange} onToggleFriendView={handleFriendViewChange}/>
+			<ActionButtonRight
+				onLayerChange={handleMapLayerChange}
+				onToggleFriendView={handleFriendViewChange}
+				gotoCurrentLocation={handleGotoCurrentLocation}
+			/>
 			<ExpandedSearch open={expandedSearchOpen} setOpen={setExpandedSearchOpen} />
 		</Box>
 	);

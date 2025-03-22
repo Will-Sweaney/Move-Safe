@@ -9,8 +9,9 @@ import Fab from '@mui/material/Fab';
 import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
 import PeopleAltOutlinedIcon from '@mui/icons-material/PeopleAltOutlined';
 import SosOutlinedIcon from '@mui/icons-material/SosOutlined';
+import MyLocationIcon from '@mui/icons-material/MyLocation';
 
-export default function ActionButton({ onLayerChange, onToggleFriendView }) {
+export default function ActionButton({ onLayerChange, onToggleFriendView, gotoCurrentLocation }) {
 	const [mapLayerModalOpen, setMapLayerModalOpen] = useState(false);
 	const [confirmSosModalOpen, setConfirmSosModalOpen] = useState(false);
 	const [notifySnackbarOpen, setNotifySnackbarOpen] = useState(false);
@@ -44,6 +45,9 @@ export default function ActionButton({ onLayerChange, onToggleFriendView }) {
 				</Fab>
 				<Fab size="large" color="primary" aria-label="add" onClick={() => setMapLayerModalOpen(true)}>
 					<LayersOutlinedIcon />
+				</Fab>
+				<Fab size="large" color="primary" aria-label="add" onClick={gotoCurrentLocation}>
+					<MyLocationIcon />
 				</Fab>
 				<Fab size="large" color="primary" aria-label="add" onClick={handleToggleFriendView}>
 					<PeopleAltOutlinedIcon />
