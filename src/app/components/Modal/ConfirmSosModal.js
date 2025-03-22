@@ -28,8 +28,8 @@ export default function ConfirmSosModal({ open, setOpen, onClose }) {
 
 				if (newTime >= 100) {
 					setTimeout(() => setOpen(false), 0);
-					onClose("Demo Alert Initiated")
 					clearInterval(timer);
+					onClose("Demo Alert Initiated")
 				}
 
 				return Math.min(newTime, 100);

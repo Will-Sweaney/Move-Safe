@@ -29,7 +29,7 @@ export default function TemporaryDrawer({ setOpen, open }) {
 			open={open}
 			onClose={handleClose}
 			PaperProps={{
-				sx: { borderBottomRightRadius: '8px', width: '60vw', overflow: 'hidden', maxHeight: 'auto' },
+				sx: { borderBottomRightRadius: '8px', width: '60vw', overflow: 'hidden', minHeight: '100vh' },
 			}}
 		>
 			<Box sx={{ width: '100%' }}>
@@ -40,25 +40,52 @@ export default function TemporaryDrawer({ setOpen, open }) {
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails sx={{ gap: '1rem', display: 'flex', flexDirection: 'column' }}>
-						<Button variant="contained" sx={{ width: '100%' }} onClick={() => {router.push('/about-us')}}>
-							Info
+						<Button
+							variant="contained"
+							sx={{ width: '100%' }}
+							onClick={() => {
+								router.push('/');
+							}}
+						>
+							Home
 						</Button>
-						<Button variant="contained" sx={{ width: '100%' }} onClick={() => {router.push('/about-us')}}>
-							Contact
+						<Button
+							variant="contained"
+							sx={{ width: '100%' }}
+						>
+							Settings
 						</Button>
 					</AccordionDetails>
 				</Accordion>
 				<Accordion expanded={expanded === '2'} onChange={handleChange('2')}>
 					<AccordionSummary expandIcon={<ExpandMoreIcon />}>
-						<Typography component="span" sx={{ flexShrink: 0 }} onClick={() => {router.push('/about-us')}}>
+						<Typography
+							component="span"
+							sx={{ flexShrink: 0 }}
+							onClick={() => {
+								router.push('/about-us');
+							}}
+						>
 							About Us
 						</Typography>
 					</AccordionSummary>
 					<AccordionDetails sx={{ gap: '1rem', display: 'flex', flexDirection: 'column' }}>
-						<Button variant="contained" sx={{ width: '100%' }} onClick={() => {router.push('/about-us')}}>
+						<Button
+							variant="contained"
+							sx={{ width: '100%' }}
+							onClick={() => {
+								router.push('/about-us');
+							}}
+						>
 							Team Members
 						</Button>
-						<Button variant="contained" sx={{ width: '100%' }} onClick={() => {router.push('/about-us')}}>
+						<Button
+							variant="contained"
+							sx={{ width: '100%' }}
+							onClick={() => {
+								router.push('/about-us');
+							}}
+						>
 							Contact
 						</Button>
 					</AccordionDetails>
