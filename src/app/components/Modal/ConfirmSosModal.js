@@ -20,11 +20,11 @@ export default function ConfirmSosModal({ open, setOpen, onClose }) {
 			return;
 		}
 
-		const interval = 1;
+		const interval = 16;
 
 		const timer = setInterval(() => {
 			setTime((prevTime) => {
-				const newTime = prevTime + interval / 3;
+				const newTime = prevTime + interval / 300;
 
 				if (newTime >= 100) {
 					setTimeout(() => setOpen(false), 0);
