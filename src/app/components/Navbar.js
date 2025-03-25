@@ -15,10 +15,39 @@ import DirectionsIcon from '@mui/icons-material/Directions';
 
 export default function Navbar({ onRouteSelect, title }) {
 	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [activeRoute, setActiveRoute] = useState(false);
+	const [route, setRoute] = useState(null);
 
 	const handleRouteChange = () => {
-		onRouteSelect();
+		onRouteSelect(route);
 	};
+
+	const handleRouteSelect = (e, newValue) => {
+		switch (newValue) {
+			case 'Example Route 1':
+				setRoute(0);
+				setActiveRoute(true);
+				break;
+			case 'Example Route 2':
+				setRoute(1);
+				setActiveRoute(true);
+				break;
+			case 'Example Route 3':
+				setRoute(2);
+				setActiveRoute(true);
+				break;
+			case 'Example Route 4':
+				setRoute(3);
+				setActiveRoute(true);
+				break;
+			default:
+				setRoute(null);
+				setActiveRoute(false);
+				break;
+		}
+	};
+
+	const routes = ['Example Route 1', 'Example Route 2', 'Example Route 3', 'Example Route 4'];
 
 	return (
 		<React.Fragment>
@@ -45,8 +74,9 @@ export default function Navbar({ onRouteSelect, title }) {
 							<Autocomplete
 								freeSolo
 								disableClearable
-								options={['Example Route'].map((option) => option)}
+								options={routes.map((option) => option)}
 								sx={{ width: '100%' }}
+								onInputChange={handleRouteSelect}
 								renderInput={(params) => (
 									<TextField
 										{...params}
@@ -64,6 +94,7 @@ export default function Navbar({ onRouteSelect, title }) {
 								color="primary"
 								sx={{ p: '10px' }}
 								aria-label="directions"
+								disabled={!activeRoute}
 								onClick={() => {
 									handleRouteChange();
 								}}

@@ -12,13 +12,13 @@ import Box from '@mui/material/Box';
 
 export default function Home() {
 	const [expandedSearchOpen, setExpandedSearchOpen] = useState(false);
-	const [demoRouteEnabled, setDemoRouteEnabled] = useState(false);
+	const [demoRoute, setDemoRoute] = useState(null);
 	const [friendViewEnabled, setFriendViewEnabled] = useState(false);
 	const [mapLayerID, setMapLayerID] = useState(0);
 	const mapRef = useRef();
 
-	const handleRouteChange = () => {
-		setDemoRouteEnabled(true);
+	const handleRouteChange = (routeID) => {
+		setDemoRoute(routeID);
 	};
 
 	const handleMapLayerChange = (id) => {
@@ -38,7 +38,7 @@ export default function Home() {
 	return (
 		<Box>
 			<Navbar onRouteSelect={handleRouteChange} />
-			<Map showDemoRoute={demoRouteEnabled} mapLayerID={mapLayerID} showFriends={friendViewEnabled} ref={mapRef}/>
+			<Map demoRoute={demoRoute} mapLayerID={mapLayerID} showFriends={friendViewEnabled} ref={mapRef}/>
 			<ActionButtonLeft />
 			<ActionButtonRight
 				onLayerChange={handleMapLayerChange}

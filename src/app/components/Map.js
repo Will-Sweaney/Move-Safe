@@ -7,10 +7,18 @@ const tileValues = [
 	'http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
 ];
 
-const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
+const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 	const [Leaflet, setLeaflet] = useState(null);
 	const [route, setRoute] = useState([]);
+	const [destinationMarkerPosition, setDestinationMarkerPosition] = useState([0, 0]);
 	const mapRef = useRef(null);
+
+	const routes = {
+		0: ['-4.120,50.42', '-4.148,50.370'],
+		1: ['-4.120,50.42', '-4.108,50.373'],
+		2: ['-4.120,50.42', '-4.148,50.370'],
+		3: ['-4.120,50.42', '-4.148,50.370'],
+	};
 
 	useEffect(() => {
 		import('react-leaflet').then((L) => setLeaflet(L));
@@ -26,14 +34,16 @@ const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
 	}, [Leaflet]);
 
 	useEffect(() => {
-		if (showDemoRoute) {
-			fetchRoute();
+		if (demoRoute != null) {
+			fetchRoute(demoRoute);
 		}
-	}, [showDemoRoute]);
+	}, [demoRoute]);
 
-	const fetchRoute = async () => {
-		const start = '-4.120,50.42';
-		const end = '-4.148,50.370';
+	const fetchRoute = async (routeID) => {
+		// TODO: fix route 0
+		const start = routes[routeID][0];
+		const end = routes[routeID][1];
+		setDestinationMarkerPosition(routes[routeID][1]);
 
 		const url = `https://router.project-osrm.org/route/v1/driving/${start};${end}?overview=full&geometries=geojson`;
 
@@ -45,7 +55,26 @@ const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
 				setRoute(coordinates);
 
 				if (mapRef.current) {
-					mapRef.current.setView([50.396, -4.137], 13);
+					switch (demoRoute) {
+						case 0:
+							setDestinationMarkerPosition([50.42, -4.12]);
+							mapRef.current.setView([50.396, -4.137], 13);
+							break;
+						case 1:
+							setDestinationMarkerPosition([50.373, -4.108]);
+							mapRef.current.setView([50.396, -4.137], 13);
+							break;
+						case 2:
+							setDestinationMarkerPosition([50.42, -4.12]);
+							mapRef.current.setView([50.396, -4.137], 13);
+							break;
+						case 3:
+							setDestinationMarkerPosition([50.42, -4.12]);
+							mapRef.current.setView([50.396, -4.137], 13);
+							break;
+						default:
+							break;
+					}
 				}
 			}
 		} catch (error) {
@@ -102,7 +131,12 @@ const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
 
 	return (
 		<div style={{ height: 'calc(100vh - 5rem - 56px)', width: '100%' }}>
-			<MapContainer center={[50.42, -4.12]} zoom={15} ref={mapRef} style={{ height: '100%', width: '100%' }}>
+			<MapContainer
+				center={destinationMarkerPosition || [0, 0]}
+				zoom={15}
+				ref={mapRef}
+				style={{ height: '100%', width: '100%' }}
+			>
 				<TileLayer url={tileValues[mapLayerID]} />
 				<ImageOverlay
 					url="https://www.pngmart.com/files/23/Editing-Red-Glow-PNG-Pic.png"
@@ -141,12 +175,12 @@ const Map = forwardRef(({ showDemoRoute, mapLayerID, showFriends }, ref) => {
 						</Marker>
 					</>
 				)}
-				{showDemoRoute && (
+				{demoRoute && (
 					<Marker position={[50.37, -4.148]} icon={customIcon}>
 						<Popup>Destination</Popup>
 					</Marker>
 				)}
-				{showDemoRoute && route.length > 0 && <Polyline positions={route} color="yellow" />}
+				{demoRoute && route.length > 0 && <Polyline positions={route} color="yellow" />}
 				<Marker position={[50.42, -4.12]} icon={customIconLocation} />
 			</MapContainer>
 		</div>
