@@ -47,7 +47,7 @@ export default function Navbar({ onRouteSelect, title }) {
 		}
 	};
 
-	const routes = ['Example Route 1', 'Example Route 2', 'Example Route 3', 'Example Route 4'];
+	const routes = ['Example Route 1', 'Example Route 2'];
 
 	return (
 		<React.Fragment>

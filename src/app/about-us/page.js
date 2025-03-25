@@ -18,15 +18,15 @@ const teamMembers = [
 			linkedinURL: 'https://www.linkedin.com/in/oskar-kielch-974109325/',
 			bannerURL: 'https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq',
 			profileImageURL:
-				'https://media.licdn.com/dms/image/v2/D4E03AQGtuqaGlMfcTw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1724697575316?e=1747872000&v=beta&t=ta0vXqL8t3rQ42CkDP7jB3lFpdgKhv2Bgttunkh7v9c',
+				'https://media.discordapp.net/attachments/1156310194171687024/1354206329669161031/unnamed.jpg?ex=67e4726c&is=67e320ec&hm=abb572113ff598f744a660f8c8d4c0b879aaf12a0345db188ca55f09837b0732&=&format=webp&width=907&height=1209',
 		},
 	},
 	{ 
 		'Conrad Scott': { 
-			desc: '', 
-			linkedinURL: '#', 
-			bannerURL: '#', 
-			profileImageURL: '#' 
+			desc: 'Assisted with the creation of the slides and gathered and compiled statistics ', 
+			linkedinURL: 'https://conradscott.co.uk/', 
+			bannerURL: 'https://media.discordapp.net/attachments/1156310194171687024/1354205571871674549/unnamed.jpg?ex=67e471b8&is=67e32038&hm=48554c821bb7b6ff220e8d22afead634ea5590854283a6a63aebbfcdb804c0b6&=&format=webp&width=1612&height=1209', 
+			profileImageURL: 'https://media.discordapp.net/attachments/1156310194171687024/1354205572181790951/unnamed1.jpg?ex=67e471b8&is=67e32038&hm=5e490c25037da8bd64e78f0a9bc5a6e7803a9963860809861175cc65415524ec&=&format=webp&width=681&height=1209' 
 		} 
 	},
 	{
@@ -40,10 +40,10 @@ const teamMembers = [
 	},
 	{ 
 		'Quinn Fell': { 
-			desc: '', 
-			linkedinURL: '#', 
-			bannerURL: '#', 
-			profileImageURL: '#' 
+			desc: 'Guided the team and supported with the practice presentations', 
+			linkedinURL: 'mailto:quinn.ffell@gmail.com', 
+			bannerURL: 'https://static.licdn.com/aero-v1/sc/h/55k1z8997gh8dwtihm11aajyq', 
+			profileImageURL: 'https://media.discordapp.net/attachments/1156310194171687024/1354207940529098993/unnamed.jpg?ex=67e473ec&is=67e3226c&hm=a327e2c521dca458abc314e44d26eb441177ef9cef045a1bd9e8c4b16cccc44e&=&format=webp&width=1043&height=1391' 
 		} 
 	},
 	{
@@ -94,7 +94,7 @@ export default function Home() {
 							</CardContent>
 							<CardActions>
 								<Button size="small" href={member.linkedinURL} target="_blank">
-									Linkedin
+									Profile
 								</Button>
 							</CardActions>
 						</Card>

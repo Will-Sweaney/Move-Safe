@@ -10,7 +10,7 @@ const tileValues = [
 const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 	const [Leaflet, setLeaflet] = useState(null);
 	const [route, setRoute] = useState([]);
-	const [destinationMarkerPosition, setDestinationMarkerPosition] = useState([0, 0]);
+	const [destinationMarkerPosition, setDestinationMarkerPosition] = useState(null);
 	const mapRef = useRef(null);
 
 	const routes = {
@@ -43,7 +43,6 @@ const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 		// TODO: fix route 0
 		const start = routes[routeID][0];
 		const end = routes[routeID][1];
-		setDestinationMarkerPosition(routes[routeID][1]);
 
 		const url = `https://router.project-osrm.org/route/v1/driving/${start};${end}?overview=full&geometries=geojson`;
 
@@ -57,7 +56,7 @@ const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 				if (mapRef.current) {
 					switch (demoRoute) {
 						case 0:
-							setDestinationMarkerPosition([50.42, -4.12]);
+							setDestinationMarkerPosition([50.370,-4.148]);
 							mapRef.current.setView([50.396, -4.137], 13);
 							break;
 						case 1:
@@ -131,12 +130,7 @@ const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 
 	return (
 		<div style={{ height: 'calc(100vh - 5rem - 56px)', width: '100%' }}>
-			<MapContainer
-				center={destinationMarkerPosition || [0, 0]}
-				zoom={15}
-				ref={mapRef}
-				style={{ height: '100%', width: '100%' }}
-			>
+			<MapContainer center={[50.42, -4.12]} zoom={15} ref={mapRef} style={{ height: '100%', width: '100%' }}>
 				<TileLayer url={tileValues[mapLayerID]} />
 				<ImageOverlay
 					url="https://www.pngmart.com/files/23/Editing-Red-Glow-PNG-Pic.png"
@@ -175,12 +169,13 @@ const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 						</Marker>
 					</>
 				)}
-				{demoRoute && (
-					<Marker position={[50.37, -4.148]} icon={customIcon}>
+
+				{demoRoute != null && destinationMarkerPosition?.length > 0 && (
+					<Marker position={destinationMarkerPosition} icon={customIcon}>
 						<Popup>Destination</Popup>
 					</Marker>
 				)}
-				{demoRoute && route.length > 0 && <Polyline positions={route} color="yellow" />}
+				{demoRoute != null && route.length > 0 && <Polyline positions={route} color="yellow" />}
 				<Marker position={[50.42, -4.12]} icon={customIconLocation} />
 			</MapContainer>
 		</div>
