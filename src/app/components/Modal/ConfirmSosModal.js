@@ -3,11 +3,6 @@ import React, { useState, useEffect } from 'react';
 import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActionArea from '@mui/material/CardActionArea';
 import LinearProgress from '@mui/material/LinearProgress';
 import Button from '@mui/material/Button';
 
@@ -24,7 +19,7 @@ export default function ConfirmSosModal({ open, setOpen, onClose }) {
 
 		const timer = setInterval(() => {
 			setTime((prevTime) => {
-				const newTime = prevTime + interval / 300;
+				const newTime = prevTime + interval / 16;
 
 				if (newTime >= 100) {
 					setTimeout(() => setOpen(false), 0);
