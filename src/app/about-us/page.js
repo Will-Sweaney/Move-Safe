@@ -94,7 +94,7 @@ export default function Home() {
 							</CardContent>
 							<CardActions>
 								<Button size="small" href={member.linkedinURL} target="_blank">
-									Profile
+									Contact
 								</Button>
 							</CardActions>
 						</Card>

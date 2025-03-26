@@ -61,7 +61,7 @@ const Map = forwardRef(({ demoRoute, mapLayerID, showFriends }, ref) => {
 							break;
 						case 1:
 							setDestinationMarkerPosition([50.373, -4.108]);
-							mapRef.current.setView([50.396, -4.137], 13);
+							mapRef.current.setView([50.396, -4.1], 13);
 							break;
 						case 2:
 							setDestinationMarkerPosition([50.42, -4.12]);
